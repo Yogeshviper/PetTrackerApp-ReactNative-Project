@@ -1,20 +1,28 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-export default function App() {
+import HomeScreen from './src/screen/home'
+import DogProfilePage from './src/screen/Dog_profile'
+import PetInformationForm from './src/screen/Pet_info'
+import Pet from './src/screen/Pet'
+const Stack = createNativeStackNavigator();
+
+const MyStack = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+          // options={{title: 'Welcome'}}
+        />
+        <Stack.Screen name="Dog profile" component={DogProfilePage} />
+        <Stack.Screen name="Pet info" component={PetInformationForm} />
+        <Stack.Screen name="Pet" component={Pet} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default MyStack
